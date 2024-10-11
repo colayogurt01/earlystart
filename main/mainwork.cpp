@@ -92,75 +92,10 @@ std::vector<std::wstring> ReadStartupPaths(const std::wstring& filePath) {
 
 
 //加程序启动判断
-//
-
-//void StartPrograms(const std::vector<std::wstring>& paths) {
-//    // 获取当前活动会话ID
-//    DWORD sessionId = WTSGetActiveConsoleSessionId();
-//    HANDLE hUserToken;
-//    int watting_time=100;//程序启动后的等待时间
-//
-//    // 获取用户令牌
-//    if (WTSQueryUserToken(sessionId, &hUserToken))
-//    {
-//        for (const auto& programPath : paths)
-//        {
-//            STARTUPINFOW si; // 使用宽字符版本的 STARTUPINFO
-//            PROCESS_INFORMATION pi;
-//
-//            ZeroMemory(&si, sizeof(si)); // 清零启动信息结构
-//            si.cb = sizeof(si);          // 设置结构大小
-//            ZeroMemory(&pi, sizeof(pi)); // 清零进程信息结构
-//
-//            // 使用 CreateProcessAsUserW 函数创建新进程
-//            if (CreateProcessAsUserW(hUserToken,   // 用户令牌
-//                                      programPath.c_str(), // 可执行文件路径
-//                                      NULL,                // 命令行参数
-//                                      NULL,                // 进程句柄不可继承
-//                                      NULL,                // 线程句柄不可继承
-//                                      FALSE,               // 不继承句柄
-//                                      0,                   // 默认创建标志
-//                                      NULL,                // 使用父进程的环境变量
-//                                      NULL,                // 使用父进程的当前目录
-//                                      &si,                 // 启动信息
-//                                      &pi)                 // 进程信息
-//                    )
-//            {
-//                // 等待500ms
-//                Sleep(watting_time);
-//                //判断CreateProcessAsUserW(）函数启动的程序是否启动，如果没有启动那就再启动一次并且给watting_time+100然后再次判断，下一次如果正常启动了将watting_time=100
-//
-//                LogMessage(L"Program started and is ready: " + programPath);
-//
-//
-//                CloseHandle(pi.hProcess); // 关闭进程句柄
-//                CloseHandle(pi.hThread);  // 关闭线程句柄
-//
-//            }
-//            else
-//            {
-//
-//                DWORD error = GetLastError(); // 获取错误代码
-//                LogMessage(L"Failed to start program: " + programPath + L" Error: " + std::to_wstring(error));
-//            }
-//        }
-//        Start_status = true; // 设置启动状态
-//        CloseHandle(hUserToken); // 关闭用户令牌句柄
-//    }
-//    else
-//    {
-//        DWORD error = GetLastError();
-//        LogMessage(L"Failed to get user token. Error: " + std::to_wstring(error));
-//    }
-//}
-//
-
-
-
-
-
 // 检查进程是否在运行（通过完整路径）
-bool IsProcessRunning(const std::wstring& processPath) {
+bool IsProcessRunning(const std::wstring& processPath)
+{
+    LogMessage(L"search " + processPath);
     HANDLE hProcessSnap = CreateToolhelp32Snapshot(TH32CS_SNAPPROCESS, 0);
     if (hProcessSnap == INVALID_HANDLE_VALUE) {
         return false; // 创建快照失败
@@ -190,9 +125,6 @@ bool IsProcessRunning(const std::wstring& processPath) {
 }
 
 
-
-
-
 void StartPrograms(const std::vector<std::wstring>& paths) {
     // 获取当前活动会话ID
     DWORD sessionId = WTSGetActiveConsoleSessionId();
@@ -215,7 +147,7 @@ void StartPrograms(const std::vector<std::wstring>& paths) {
             // 初始化重启次数
             restart_times = 0;
 
-            // 首次尝试启动程序
+            // 首次启动程序
             if (CreateProcessAsUserW(hUserToken,   // 用户令牌
                                      programPath.c_str(), // 可执行文件路径
                                      NULL,                // 命令行参数
@@ -235,13 +167,29 @@ void StartPrograms(const std::vector<std::wstring>& paths) {
                 // 判断程序是否启动
                 while (!IsProcessRunning(programPath)) // 此处判断是否根据路径启动而不是名称
                 {
+                    waiting_time += 100;
+                    restart_times++; // 增加重启次数
                     // 如果程序未启动，且重启次数未超限，则重新尝试启动
-                    if (restart_times < max_retries) {
+                    if (restart_times < max_retries)
+                    {
                         LogMessage(L"Retrying to start program: " + programPath);
 
                         // 重新启动程序
-                        if (CreateProcessAsUserW(hUserToken, programPath.c_str(), NULL, NULL, NULL, FALSE, 0, NULL, NULL, &si, &pi)) {
+                        if (CreateProcessAsUserW(hUserToken,
+                                                 programPath.c_str(),
+                                                 NULL,
+                                                 NULL,
+                                                 NULL,
+                                                 FALSE,
+                                                 0,
+                                                 NULL,
+                                                 NULL,
+                                                 &si,
+                                                 &pi)
+                                                 )
+                        {
                             // 启动后再次等待
+
                             Sleep(waiting_time);
                         } else
                         {
@@ -249,9 +197,8 @@ void StartPrograms(const std::vector<std::wstring>& paths) {
                             LogMessage(L"Failed to start program on retry: " + programPath + L" Error: " + std::to_wstring(error));
                         }
 
-                        // 增加等待时间
-                        waiting_time += 100;
-                        restart_times++; // 增加重启次数
+                        //
+
                     } else
                     {
                         LogMessage(programPath +L"problem！NO START！ " + programPath);
@@ -263,15 +210,18 @@ void StartPrograms(const std::vector<std::wstring>& paths) {
 
                 CloseHandle(pi.hProcess); // 关闭进程句柄
                 CloseHandle(pi.hThread);  // 关闭线程句柄
-            } else {
+            } else
+            {
                 DWORD error = GetLastError(); // 获取错误代码
                 LogMessage(L"Failed to start program: " + programPath + L" Error: " + std::to_wstring(error));
             }
         }
         Start_status = true; // 设置启动状态
         CloseHandle(hUserToken); // 关闭用户令牌句柄
-    } else {
+    }
+    else
+        {
         DWORD error = GetLastError();
         LogMessage(L"Failed to get user token. Error: " + std::to_wstring(error));
-    }
+        }
 }
