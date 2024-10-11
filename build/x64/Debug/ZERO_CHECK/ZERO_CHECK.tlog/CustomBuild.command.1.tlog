@@ -1,0 +1,10 @@
+^C:\WORKSPACE\EARLYSTART\BUILD\CMAKEFILES\6E437383D2F9D8166A13AF5C6BCD1A0A\GENERATE.STAMP.RULE
+setlocal
+C:\tool_chain\CMake\bin\cmake.exe -SC:/workspace/EarlyStart -BC:/workspace/EarlyStart/build --check-stamp-list CMakeFiles/generate.stamp.list --vs-solution-file C:/workspace/EarlyStart/build/earlystart.sln
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd

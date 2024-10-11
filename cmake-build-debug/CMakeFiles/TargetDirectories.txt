@@ -1,3 +1,6 @@
+C:/workspace/EarlyStart/cmake-build-debug/CMakeFiles/test.dir
 C:/workspace/EarlyStart/cmake-build-debug/CMakeFiles/earlystart.dir
+C:/workspace/EarlyStart/cmake-build-debug/CMakeFiles/installer.dir
+C:/workspace/EarlyStart/cmake-build-debug/CMakeFiles/uninstaller.dir
 C:/workspace/EarlyStart/cmake-build-debug/CMakeFiles/edit_cache.dir
 C:/workspace/EarlyStart/cmake-build-debug/CMakeFiles/rebuild_cache.dir

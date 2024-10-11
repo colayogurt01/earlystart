@@ -41,6 +41,57 @@ include CMakeFiles/rules.ninja
 
 cmake_ninja_workdir = C$:/workspace/EarlyStart/cmake-build-debug/
 # =============================================================================
+# Object build statements for EXECUTABLE target test
+
+
+#############################################
+# Order-only phony target for test
+
+build cmake_object_order_depends_target_test: phony || CMakeFiles/test.dir
+
+build CMakeFiles/test.dir/main/test.cpp.obj: CXX_COMPILER__test_unscanned_Debug C$:/workspace/EarlyStart/main/test.cpp || cmake_object_order_depends_target_test
+  DEFINES = -DUNICODE -D_UNICODE
+  DEP_FILE = CMakeFiles\test.dir\main\test.cpp.obj.d
+  FLAGS = -g -std=gnu++17 -fdiagnostics-color=always
+  INCLUDES = -IC:/workspace/EarlyStart/Log
+  OBJECT_DIR = CMakeFiles\test.dir
+  OBJECT_FILE_DIR = CMakeFiles\test.dir\main
+
+build CMakeFiles/test.dir/main/mainwork.cpp.obj: CXX_COMPILER__test_unscanned_Debug C$:/workspace/EarlyStart/main/mainwork.cpp || cmake_object_order_depends_target_test
+  DEFINES = -DUNICODE -D_UNICODE
+  DEP_FILE = CMakeFiles\test.dir\main\mainwork.cpp.obj.d
+  FLAGS = -g -std=gnu++17 -fdiagnostics-color=always
+  INCLUDES = -IC:/workspace/EarlyStart/Log
+  OBJECT_DIR = CMakeFiles\test.dir
+  OBJECT_FILE_DIR = CMakeFiles\test.dir\main
+
+build CMakeFiles/test.dir/log/log.cpp.obj: CXX_COMPILER__test_unscanned_Debug C$:/workspace/EarlyStart/log/log.cpp || cmake_object_order_depends_target_test
+  DEFINES = -DUNICODE -D_UNICODE
+  DEP_FILE = CMakeFiles\test.dir\log\log.cpp.obj.d
+  FLAGS = -g -std=gnu++17 -fdiagnostics-color=always
+  INCLUDES = -IC:/workspace/EarlyStart/Log
+  OBJECT_DIR = CMakeFiles\test.dir
+  OBJECT_FILE_DIR = CMakeFiles\test.dir\log
+
+
+# =============================================================================
+# Link build statements for EXECUTABLE target test
+
+
+#############################################
+# Link the executable C:\workspace\EarlyStart\bin\test.exe
+
+build C$:/workspace/EarlyStart/bin/test.exe: CXX_EXECUTABLE_LINKER__test_Debug CMakeFiles/test.dir/main/test.cpp.obj CMakeFiles/test.dir/main/mainwork.cpp.obj CMakeFiles/test.dir/log/log.cpp.obj
+  FLAGS = -g
+  LINK_LIBRARIES = -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
+  OBJECT_DIR = CMakeFiles\test.dir
+  POST_BUILD = cd .
+  PRE_LINK = cd .
+  TARGET_FILE = C:\workspace\EarlyStart\bin\test.exe
+  TARGET_IMPLIB = libtest.dll.a
+  TARGET_PDB = test.exe.dbg
+
+# =============================================================================
 # Object build statements for EXECUTABLE target earlystart
 
 
@@ -49,11 +100,29 @@ cmake_ninja_workdir = C$:/workspace/EarlyStart/cmake-build-debug/
 
 build cmake_object_order_depends_target_earlystart: phony || CMakeFiles/earlystart.dir
 
-build CMakeFiles/earlystart.dir/main.cpp.obj: CXX_COMPILER__earlystart_unscanned_Debug C$:/workspace/EarlyStart/main.cpp || cmake_object_order_depends_target_earlystart
-  DEP_FILE = CMakeFiles\earlystart.dir\main.cpp.obj.d
-  FLAGS = -g -fdiagnostics-color=always
+build CMakeFiles/earlystart.dir/main/main.cpp.obj: CXX_COMPILER__earlystart_unscanned_Debug C$:/workspace/EarlyStart/main/main.cpp || cmake_object_order_depends_target_earlystart
+  DEFINES = -DUNICODE -D_UNICODE
+  DEP_FILE = CMakeFiles\earlystart.dir\main\main.cpp.obj.d
+  FLAGS = -g -std=gnu++17 -fdiagnostics-color=always
+  INCLUDES = -IC:/workspace/EarlyStart/Log
   OBJECT_DIR = CMakeFiles\earlystart.dir
-  OBJECT_FILE_DIR = CMakeFiles\earlystart.dir
+  OBJECT_FILE_DIR = CMakeFiles\earlystart.dir\main
+
+build CMakeFiles/earlystart.dir/main/mainwork.cpp.obj: CXX_COMPILER__earlystart_unscanned_Debug C$:/workspace/EarlyStart/main/mainwork.cpp || cmake_object_order_depends_target_earlystart
+  DEFINES = -DUNICODE -D_UNICODE
+  DEP_FILE = CMakeFiles\earlystart.dir\main\mainwork.cpp.obj.d
+  FLAGS = -g -std=gnu++17 -fdiagnostics-color=always
+  INCLUDES = -IC:/workspace/EarlyStart/Log
+  OBJECT_DIR = CMakeFiles\earlystart.dir
+  OBJECT_FILE_DIR = CMakeFiles\earlystart.dir\main
+
+build CMakeFiles/earlystart.dir/log/log.cpp.obj: CXX_COMPILER__earlystart_unscanned_Debug C$:/workspace/EarlyStart/log/log.cpp || cmake_object_order_depends_target_earlystart
+  DEFINES = -DUNICODE -D_UNICODE
+  DEP_FILE = CMakeFiles\earlystart.dir\log\log.cpp.obj.d
+  FLAGS = -g -std=gnu++17 -fdiagnostics-color=always
+  INCLUDES = -IC:/workspace/EarlyStart/Log
+  OBJECT_DIR = CMakeFiles\earlystart.dir
+  OBJECT_FILE_DIR = CMakeFiles\earlystart.dir\log
 
 
 # =============================================================================
@@ -61,17 +130,103 @@ build CMakeFiles/earlystart.dir/main.cpp.obj: CXX_COMPILER__earlystart_unscanned
 
 
 #############################################
-# Link the executable earlystart.exe
+# Link the executable C:\workspace\EarlyStart\bin\earlystart.exe
 
-build earlystart.exe: CXX_EXECUTABLE_LINKER__earlystart_Debug CMakeFiles/earlystart.dir/main.cpp.obj
+build C$:/workspace/EarlyStart/bin/earlystart.exe: CXX_EXECUTABLE_LINKER__earlystart_Debug CMakeFiles/earlystart.dir/main/main.cpp.obj CMakeFiles/earlystart.dir/main/mainwork.cpp.obj CMakeFiles/earlystart.dir/log/log.cpp.obj
   FLAGS = -g
-  LINK_LIBRARIES = -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
+  LINK_LIBRARIES = -lWtsapi32  -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
   OBJECT_DIR = CMakeFiles\earlystart.dir
   POST_BUILD = cd .
   PRE_LINK = cd .
-  TARGET_FILE = earlystart.exe
+  TARGET_FILE = C:\workspace\EarlyStart\bin\earlystart.exe
   TARGET_IMPLIB = libearlystart.dll.a
   TARGET_PDB = earlystart.exe.dbg
+
+# =============================================================================
+# Object build statements for EXECUTABLE target installer
+
+
+#############################################
+# Order-only phony target for installer
+
+build cmake_object_order_depends_target_installer: phony || CMakeFiles/installer.dir
+
+build CMakeFiles/installer.dir/install/install.cpp.obj: CXX_COMPILER__installer_unscanned_Debug C$:/workspace/EarlyStart/install/install.cpp || cmake_object_order_depends_target_installer
+  DEFINES = -DUNICODE -D_UNICODE
+  DEP_FILE = CMakeFiles\installer.dir\install\install.cpp.obj.d
+  FLAGS = -g -std=gnu++17 -fdiagnostics-color=always
+  INCLUDES = -IC:/workspace/EarlyStart/Log
+  OBJECT_DIR = CMakeFiles\installer.dir
+  OBJECT_FILE_DIR = CMakeFiles\installer.dir\install
+
+build CMakeFiles/installer.dir/log/log.cpp.obj: CXX_COMPILER__installer_unscanned_Debug C$:/workspace/EarlyStart/log/log.cpp || cmake_object_order_depends_target_installer
+  DEFINES = -DUNICODE -D_UNICODE
+  DEP_FILE = CMakeFiles\installer.dir\log\log.cpp.obj.d
+  FLAGS = -g -std=gnu++17 -fdiagnostics-color=always
+  INCLUDES = -IC:/workspace/EarlyStart/Log
+  OBJECT_DIR = CMakeFiles\installer.dir
+  OBJECT_FILE_DIR = CMakeFiles\installer.dir\log
+
+
+# =============================================================================
+# Link build statements for EXECUTABLE target installer
+
+
+#############################################
+# Link the executable C:\workspace\EarlyStart\bin\installer.exe
+
+build C$:/workspace/EarlyStart/bin/installer.exe: CXX_EXECUTABLE_LINKER__installer_Debug CMakeFiles/installer.dir/install/install.cpp.obj CMakeFiles/installer.dir/log/log.cpp.obj
+  FLAGS = -g
+  LINK_LIBRARIES = -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
+  OBJECT_DIR = CMakeFiles\installer.dir
+  POST_BUILD = cd .
+  PRE_LINK = cd .
+  TARGET_FILE = C:\workspace\EarlyStart\bin\installer.exe
+  TARGET_IMPLIB = libinstaller.dll.a
+  TARGET_PDB = installer.exe.dbg
+
+# =============================================================================
+# Object build statements for EXECUTABLE target uninstaller
+
+
+#############################################
+# Order-only phony target for uninstaller
+
+build cmake_object_order_depends_target_uninstaller: phony || CMakeFiles/uninstaller.dir
+
+build CMakeFiles/uninstaller.dir/uninstall/uninstall.cpp.obj: CXX_COMPILER__uninstaller_unscanned_Debug C$:/workspace/EarlyStart/uninstall/uninstall.cpp || cmake_object_order_depends_target_uninstaller
+  DEFINES = -DUNICODE -D_UNICODE
+  DEP_FILE = CMakeFiles\uninstaller.dir\uninstall\uninstall.cpp.obj.d
+  FLAGS = -g -std=gnu++17 -fdiagnostics-color=always
+  INCLUDES = -IC:/workspace/EarlyStart/Log
+  OBJECT_DIR = CMakeFiles\uninstaller.dir
+  OBJECT_FILE_DIR = CMakeFiles\uninstaller.dir\uninstall
+
+build CMakeFiles/uninstaller.dir/log/log.cpp.obj: CXX_COMPILER__uninstaller_unscanned_Debug C$:/workspace/EarlyStart/log/log.cpp || cmake_object_order_depends_target_uninstaller
+  DEFINES = -DUNICODE -D_UNICODE
+  DEP_FILE = CMakeFiles\uninstaller.dir\log\log.cpp.obj.d
+  FLAGS = -g -std=gnu++17 -fdiagnostics-color=always
+  INCLUDES = -IC:/workspace/EarlyStart/Log
+  OBJECT_DIR = CMakeFiles\uninstaller.dir
+  OBJECT_FILE_DIR = CMakeFiles\uninstaller.dir\log
+
+
+# =============================================================================
+# Link build statements for EXECUTABLE target uninstaller
+
+
+#############################################
+# Link the executable C:\workspace\EarlyStart\bin\uninstaller.exe
+
+build C$:/workspace/EarlyStart/bin/uninstaller.exe: CXX_EXECUTABLE_LINKER__uninstaller_Debug CMakeFiles/uninstaller.dir/uninstall/uninstall.cpp.obj CMakeFiles/uninstaller.dir/log/log.cpp.obj
+  FLAGS = -g
+  LINK_LIBRARIES = -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
+  OBJECT_DIR = CMakeFiles\uninstaller.dir
+  POST_BUILD = cd .
+  PRE_LINK = cd .
+  TARGET_FILE = C:\workspace\EarlyStart\bin\uninstaller.exe
+  TARGET_IMPLIB = libuninstaller.dll.a
+  TARGET_PDB = uninstaller.exe.dbg
 
 
 #############################################
@@ -99,7 +254,21 @@ build rebuild_cache: phony CMakeFiles/rebuild_cache.util
 # =============================================================================
 # Target aliases.
 
-build earlystart: phony earlystart.exe
+build earlystart: phony C$:/workspace/EarlyStart/bin/earlystart.exe
+
+build earlystart.exe: phony C$:/workspace/EarlyStart/bin/earlystart.exe
+
+build installer: phony C$:/workspace/EarlyStart/bin/installer.exe
+
+build installer.exe: phony C$:/workspace/EarlyStart/bin/installer.exe
+
+build test: phony C$:/workspace/EarlyStart/bin/test.exe
+
+build test.exe: phony C$:/workspace/EarlyStart/bin/test.exe
+
+build uninstaller: phony C$:/workspace/EarlyStart/bin/uninstaller.exe
+
+build uninstaller.exe: phony C$:/workspace/EarlyStart/bin/uninstaller.exe
 
 # =============================================================================
 # Folder targets.
@@ -109,7 +278,7 @@ build earlystart: phony earlystart.exe
 #############################################
 # Folder: C:/workspace/EarlyStart/cmake-build-debug
 
-build all: phony earlystart.exe
+build all: phony C$:/workspace/EarlyStart/bin/test.exe C$:/workspace/EarlyStart/bin/earlystart.exe C$:/workspace/EarlyStart/bin/installer.exe C$:/workspace/EarlyStart/bin/uninstaller.exe
 
 # =============================================================================
 # Built-in targets

@@ -1,35 +1,46 @@
-# Prerequisites
-*.d
+# General IDE settings
+.idea/
 
-# Compiled Object files
-*.slo
-*.lo
+# Ignore build directory and generated files
+cmake-build-debug/
+cmake-build-release/
+cmake-build-*
+
+# Exclude compiled object files and binary files
 *.o
 *.obj
-
-# Precompiled Headers
-*.gch
-*.pch
-
-# Compiled Dynamic libraries
 *.so
-*.dylib
 *.dll
-
-# Fortran module files
-*.mod
-*.smod
-
-# Compiled Static libraries
-*.lai
-*.la
-*.a
-*.lib
-
-# Executables
 *.exe
-*.out
-*.app
-# log
+
+# CMake files
+CMakeCache.txt
+CMakeFiles/
+CMakeScripts/
+Testing/
+Makefile
+CMakeLists.txt.user
+cmake_install.cmake
+build.ninja
+rules.ninja
+*.ninja_deps
+*.ninja_log
+
+# Logs and other temporary files
 *.log
-*.txt
+*.tmp
+
+# Ignore CLion's compiler and configuration outputs
+*.cbp
+*.gch
+*.orig
+*.pyc
+*.class
+*.ipr
+*.iws
+*.iml
+*.jar
+*.swp
+
+# Ignore VCS related files
+*.vcs.xml
