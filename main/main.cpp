@@ -28,7 +28,7 @@ HINSTANCE hPrevInstance,
 int       nCmdShow)
 {
 Init();
-    LogMessage(L"Register Service Init Successfully");
+
 
 dwThreadID = ::GetCurrentThreadId();
 
